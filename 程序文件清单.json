@@ -1,0 +1,77 @@
+[
+  {
+    "path": ".markdownnote-app",
+    "bytes": 25,
+    "sha256": "41a212d57b97d4f69d5e8d480fbcb2e7d7dcddb1dd6de26ca53c70453fe71213"
+  },
+  {
+    "path": "MarkdownNote.exe",
+    "bytes": 45857280,
+    "sha256": "1bbe51502bfe54e73b442cb583867486c9f74f234742a8137fba224fb576a31e"
+  },
+  {
+    "path": "先读我.md",
+    "bytes": 4194,
+    "sha256": "782248958b3bc5869bf99415aa6f88d25c063f4f3ed11a3d687679602f73648b"
+  },
+  {
+    "path": "发行说明.md",
+    "bytes": 404,
+    "sha256": "c256bc8fc801668b7931073e8760ceee85caffc38d43713ee1d6181747b8e6e5"
+  },
+  {
+    "path": "文档/开源来源与改造说明.md",
+    "bytes": 1113,
+    "sha256": "77c587a911335b27f9ebb77e7a580700fce5339a92af399d228eb2dde6e44281"
+  },
+  {
+    "path": "文档/开源资料/LICENSE",
+    "bytes": 34523,
+    "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+  },
+  {
+    "path": "文档/开源资料/NOTICE",
+    "bytes": 181,
+    "sha256": "f056af9ede2b6b05811a4651ed1460ec8cd8161a8c2d3005e83f8ab4a54350f9"
+  },
+  {
+    "path": "文档/开源资料/THIRD_PARTY_NOTICES.md",
+    "bytes": 1366,
+    "sha256": "f4b2e6c757cf7588ebf14cbad538c226e9977c51b27ff28584091b4b8983eb6e"
+  },
+  {
+    "path": "文档/选题要求与当前范围.md",
+    "bytes": 1658,
+    "sha256": "7189ffcbfca339317a6ec11d09279729cef89a46a84ff6e4bded887bf5702aa1"
+  },
+  {
+    "path": "真实窗口验收操作表.md",
+    "bytes": 2318,
+    "sha256": "56028519d3418ac40ef46f7679e394983942c29b0c692092ed5b67d43503c560"
+  },
+  {
+    "path": "程序构建记录.json",
+    "bytes": 1277,
+    "sha256": "a792f9f4981c28ff0107fa7ac83fe994c7331da490008eec3e89a79252c96a8a"
+  },
+  {
+    "path": "验收样例/复习计划.md",
+    "bytes": 163,
+    "sha256": "3da724b5100e42ccd25a89ccde31e3648e1b59f8205252a47cec5b7d27f5e3b4"
+  },
+  {
+    "path": "验收样例/导入样例.txt",
+    "bytes": 64,
+    "sha256": "03af084eb8262792367c574e30e242b672abfb3e687f857ad66f8517ccace937"
+  },
+  {
+    "path": "验收样例/异常样例/无效UTF8.md",
+    "bytes": 29,
+    "sha256": "3da631d4450d388d60458e11936ffcad4389deb1e714914670c75d111ab21b42"
+  },
+  {
+    "path": "验收样例/软件工程.md",
+    "bytes": 411,
+    "sha256": "40e2656e34f3667b58eb3f86423544df5723e0891d1eb55ec5cc37fcbb50d354"
+  }
+]

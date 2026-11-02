@@ -1,0 +1,12 @@
+# 本机安装信息
+.course-install.ini
+
+# 应用运行数据、个人笔记与浏览器缓存
+运行数据/
+
+# 应用运行日志
+日志/
+
+# 系统临时文件
+Thumbs.db
+Desktop.ini
