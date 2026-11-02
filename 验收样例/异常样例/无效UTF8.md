@@ -1,1 +1,0 @@
-Invalid UTF-8 test sample: ÿþ

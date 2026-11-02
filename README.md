@@ -1,43 +1,45 @@
-# MarkdownNote 0.3.0
+# MarkdownNote
 
-本地 Markdown 笔记与知识管理工具。完整修改源码随 source.zip 提供；来源、作者、许可与改造说明集中在“文档/”中。本分发包不含个人笔记和浏览器缓存。
+个人 Markdown 笔记与知识管理工具，Windows 桌面版本 0.3.0。
 
-## 打开方式
-- 便携版：完整解压 portable.zip，双击“MarkdownNote.exe”。
-- 安装版：运行 setup.exe，选一个有写权限的目录，安装后在该目录双击“MarkdownNote.exe”。
-- 运行需要 Windows 和已安装的 Microsoft WebView2；不需要 Node.js、Rust、API Key 或外接 Agent。
-- 直接打开 MarkdownNote.exe，由程序自动使用同目录的运行数据和日志，不需要 cmd 或 PowerShell。请完整解压，不要只复制 exe。
-- 当前程序沿用已验证的调试构建；性能目标和正式发布优化没有据此验收。
+## 功能
 
-## 可以演示
-新建、编辑、自动保存/Ctrl+S、源码/分屏/预览、分类、正文关键词搜索、普通标签、双链、Markdown/文本导入、单篇 Markdown 导出；深浅主题、右键菜单、格式工具栏、侧栏伸缩、专注模式与全屏。
+- Markdown 编辑、分屏预览、自动保存和关闭保护。
+- 分类、标签、标题与正文检索及搜索命中高亮。
+- 双向链接与反向引用、文本导入和单篇 Markdown 导出。
+- 深浅主题、右键管理标签、可调整侧栏、专注与全屏。
+- 笔记拖入分类、标签拖入笔记、笔记拖入正文创建双向链接。
+- 网页链接通过系统默认浏览器打开。
 
-上述功能代码已接入；真实窗口完整回归状态以同批《本机工作完成记录》为准。源码里的实验文档包含更大范围的设计目标，不能用它推导演示版已全部实现。
+## 开发
 
-## 五分钟演示
-1. 从左下角导入“验收样例/软件工程.md”“复习计划.md”和“导入样例.txt”。
-2. 打开“软件工程”，编辑一行，按 Ctrl+S；保存状态应变为“已保存到本地”。
-3. 搜索“柠檬873”，应找到正文命中；搜索“%_”可检查字面字符查询。清空搜索。
-4. 在右侧给笔记添加“课程”标签；点击左侧标签筛选，然后取消筛选。
-5. 切到预览点击 [[复习计划]]，查看双链信息。右键笔记展示重命名、移动、导出等操作。
-6. 切换深浅主题；拖动侧栏分隔线；F8 专注、Esc 恢复；F11 全屏、Esc 退出。
-7. 导出 .md；关闭整个程序后重新打开，检查笔记、标签和布局。
+需要 Node.js 20、Rust 1.89.0、MSVC 和 Windows SDK。桌面运行依赖 WebView2 Runtime。
 
-不要在需要保留的真实笔记上做删除、异常注入或卸载验证。“异常样例”只用于独立测试目录。
+```powershell
+npm ci
+$env:CARGO_BUILD_JOBS = '1'
+$env:MARKDOWNNOTE_PROJECT_DATA_DIR = Join-Path (Get-Location) '.local-data'
+$env:MARKDOWNNOTE_PROJECT_LOG_DIR = Join-Path (Get-Location) '.local-logs'
+npm run tauri:dev
+```
 
-## 数据与卸载
-“运行数据/”保存 SQLite 数据库、Markdown 镜像、WebView 和临时文件；“日志/”保存应用与启动日志。
-安装程序不写注册表、不创建全局快捷方式、不自动安装 WebView2。安装器旁的 MarkdownNote-install.ini 记录安装位置；同一安装器再次运行或目标目录已有安装时，程序会阻止覆盖。重新安装前需先关闭并卸载，原笔记保留。安装器移到其他文件夹并选择全新目标时，属于另一份独立分发；本版本不做 Windows 全局注册表检测。
-“卸载程序.exe”删除随包程序与说明，保留“运行数据/”和“日志/”。需要备份时先保存并关闭整个程序，再复制整个“运行数据/”，不要只复制正在使用中的 SQLite 主文件。
+```powershell
+npm run test:unit
+npm run check:design-tokens
+npm run build
+cargo build --locked --manifest-path src-tauri/Cargo.toml --bin markdownnote --features tauri/custom-protocol -j 1
+```
 
-## 故障排查
-双击后无窗口：确认 exe 同目录的 .markdownnote-app 标记保留，目录有写权限且 Windows 已有 WebView2；然后查看“日志/MarkdownNote.log”。
-目录不可写：换到有写权限的目录，或者修复文件夹权限后重试。
-搜索/标签提示程序版本不支持：更新同批程序，避免把旧 exe 和新界面混用。
-界面卡住：先等待保存或保留编辑内容，不要同时开多个开发服务器。
-重复双击不会打开同一数据目录的第二个程序。程序运行时禁止覆盖安装和卸载；请先保存并退出。不同分发目录的数据相互独立。
+原生 Windows 测试使用 `scripts/run-rust-tests.ps1 -Filter course_`，串行执行。浏览器交互检查在 `tests/course/`，使用模拟后端，不能替代原生桌面检查。
 
-## 当前范围
-当前是单库笔记演示。没有云同步、插件市场、回收站、版本历史、目录文件监视、图片附件管理、层级标签、PDF 导出或多笔记分屏；删除笔记为永久删除并要求确认。普通中文搜索使用整段子串匹配，不宣称中文分词。导入只接受 Markdown/文本，镜像文件不作为外部双向编辑源。
+## 数据与范围
 
-安装包和 WebView 前置依赖说明参考 Tauri 官方文档：https://tauri.app/distribute/windows-installer/
+完整程序双击 MarkdownNote.exe，同目录需有 `.markdownnote-app` 标记，内容为 `com.course.markdownnote`。
+新库使用 `运行数据/markdownnote.sqlite`。既有笔记库按结构识别，保持原文件原地使用；不会为更名自动迁移、合并或删除数据库。
+关闭程序后可备份完整运行数据目录。当前没有云同步、插件系统、移动端、多人协作或 PDF 导出。
+
+已删除不再使用的旧界面、独立 Agent 测试程序、模型/翻译开发脚本、发布工作流、截图与历史交付文档。当前笔记功能仍依赖的一部分共用后端实现继续保留；保留代码不表示相关旧功能已启用。
+
+## 许可
+
+许可见 LICENSE，原作者署名见 NOTICE；第三方组件说明见 `文档/开源许可/第三方许可.md`。本项目保留适用的 AGPL-3.0 义务。
